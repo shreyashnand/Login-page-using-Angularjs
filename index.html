@@ -1,0 +1,45 @@
+<!doctype html>
+<html ng-app="newApp" >
+<head>
+ <meta charset="utf-8">
+ <title>
+Sample Login App
+</title>
+<link rel="stylesheet" href="style.scss">
+<body>
+
+<div ng-app="validationApp" ng-controller="mainController" >
+  <div class="container">
+    <div class="login-form">
+      <h1>Login form</h1>
+      <form name="loginForm" ng-submit="submitForm()" novalidate>
+        <div ng-class="{ 'has-error' : loginForm.name.$invalid && !loginForm.name.$pristine }">
+          
+          <input type="text" name="first name" placeholder="First name">
+          <input type="text" name="last name" placeholder="Last name">
+          <label>Date Of Birth:</label>
+        <input type="date" name="dob">
+        <input type="text" name="country" placeholder="Country">
+          <input type="text" name="username" placeholder="Username" minlength="3" ng-model="user.username" required/>
+          
+          <p class="error-text" ng-if="loginForm.username.$invalid && loginForm.name.$pristine">You name is required.</p>
+          <p class="help-block error-text" ng-if="loginForm.username.$error.minlength">Username is too short.</p>
+        </div>
+        <input type="password" minlength="6" name="password" ng-model="user.password" placeholder="Password" required/>
+         <p class="help-block error-text" ng-if="loginForm.password.$minlength">Password is too short.</p>
+        <button class="login-btn" ng-disabled="loginForm.$invalid">Login</button>
+      </form>
+
+      <ul>
+        <li><a href="">Forgot Password?</a></li>
+        <li><a href="">Register</a></li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+<body>
+</html>
